@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,22 +19,23 @@ import com.example.demo.service.EmployeeService;
 
 @RestController
 @RequestMapping("/employee/")
+@CrossOrigin("*")
 public class EmployeeRest {
 
 	@Autowired
 	private EmployeeService employeeService;
 	
-	@GetMapping
+	@GetMapping("all")
 	private ResponseEntity<List<Employee>> getAllEmployee(){
 		return ResponseEntity.ok(employeeService.findAll());
 	}
 	
-	@GetMapping("{id}")
+	@GetMapping("find{id}")
 	private ResponseEntity<List<Employee>> getAllSolicitudeByEmpleado(@PathVariable("id") Long id){
 		return ResponseEntity.ok(employeeService.findAllById(id));
 	}
 	
-	@PostMapping
+	@PostMapping("save")
 	private ResponseEntity<Employee> SaveEmployee(@RequestBody Employee employee){
 		try {
 			Employee saveEmployee = employeeService.save(employee);

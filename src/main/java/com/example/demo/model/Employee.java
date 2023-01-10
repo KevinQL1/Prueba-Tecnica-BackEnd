@@ -64,7 +64,7 @@ public class Employee {
 		return salary_dollar*1000;
 	}
 
-	public void setSalary(float salary) {
-		this.salary_dollar = salary;
+	public void setSalary(float salary_dollar) {
+		this.salary_dollar = salary_dollar;
 	}
 }
